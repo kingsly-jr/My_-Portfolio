@@ -437,6 +437,7 @@ const Navbar: React.FC<NavbarProps> = ({ hamburgerOnly = false }) => {
     { name: 'Home', href: '/#top', menuOnly: true },
     { name: 'About', href: '/#about' },
     { name: 'Services', href: '/#services' },
+    { name: 'Experience', href: '/#experience' },
     { name: 'Work', href: '/#projects' },
     { name: 'Contact', href: '/#contact' },
   ];
