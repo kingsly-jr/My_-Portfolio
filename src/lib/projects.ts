@@ -76,6 +76,47 @@ const projects: Project[] = [
     github: 'https://github.com/kingsly-jr/Task-Management-System',
     liveUrl: 'https://task-management-system-1-0sf4.onrender.com',
   },
+  {
+    id: 997,
+    slug: 'bakery',
+    title: 'Zenyne Bakery',
+    year: '2026',
+    tech: [
+      'Next.js',
+      'Tailwind CSS',
+      'JavaScript',
+      'PostgreSQL',
+      'NeonDB',
+      'Vercel',
+      'Vercel Blob',
+      'Razorpay',
+    ],
+    description:
+      'Developed a premium bakery e-commerce platform with an elegant, responsive UI and a sophisticated cream-and-chocolate aesthetic. It features dynamic product and category management, interactive product cards and variants, shopping cart and online checkout with payment integration, an admin dashboard for inventory and orders, and an engaging promotional homepage.',
+    myRole: [
+      'Designed and developed reusable UI components and responsive layouts for desktop, tablet, and mobile devices.',
+      'Implemented dynamic CRUD operations and catalog management for bakery categories and products (cakes, pastries, breads, cookies).',
+      'Integrated frontend components with backend APIs and a PostgreSQL database hosted on NeonDB.',
+      'Developed seamless product browsing, cart management, order placement, and checkout workflows.',
+      'Integrated Razorpay payment processing and real-time order status tracking.',
+      'Built an administrative dashboard to manage products, categories, inventory, customer orders, and availability.',
+      'Managed cloud media storage with Vercel Blob and optimized image loading for high performance.',
+      'Implemented robust client and server validation, error handling, and handled production deployment on Vercel.',
+    ],
+    images: [
+      '/Projects/Project - Bakery/Screenshot 2026-10-26 214607.png',
+      '/Projects/Project - Bakery/Screenshot 2026-10-26 214623.png',
+      '/Projects/Project - Bakery/Screenshot 2026-10-26 214635.png',
+      '/Projects/Project - Bakery/Screenshot 2026-10-26 214703.png',
+      '/Projects/Project - Bakery/Screenshot 2026-10-26 214718.png',
+      '/Projects/Project - Bakery/Screenshot 2026-10-26 214729.png',
+      '/Projects/Project - Bakery/Screenshot 2026-10-26 214741.png',
+      '/Projects/Project - Bakery/Screenshot 2026-10-26 214757.png',
+    ],
+    hoverImage: '/Projects/Project - Bakery/Screenshot 2026-10-26 214607.png',
+    github: 'https://github.com/kingsly-jr/Bakery-Site',
+    liveUrl: 'https://bakery-site-eight.vercel.app',
+  },
 ];
 
 export function getAllProjects(): Project[] {
