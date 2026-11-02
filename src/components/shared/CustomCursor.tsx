@@ -55,7 +55,7 @@ export default function CustomCursor() {
 
     // Use gsap.ticker instead of a separate RAF loop
     // Guard against HMR double-registration
-    const tickId = Symbol('cursor-tick');
+
     const tick = () => {
       delayedMouse.current.x += (mouse.current.x - delayedMouse.current.x) * 0.1;
       delayedMouse.current.y += (mouse.current.y - delayedMouse.current.y) * 0.1;

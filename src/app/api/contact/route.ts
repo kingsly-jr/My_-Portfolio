@@ -178,6 +178,23 @@ export async function POST(request: Request) {
     const escapedMessage = escapeHtml(trimmedMessage).replace(/\n/g, '<br>');
 
     if (!process.env.GMAIL_APP_PASSWORD) {
+      if (process.env.NODE_ENV === 'development') {
+        try {
+          const logDir = process.cwd();
+          const logFile = path.join(logDir, 'messages.txt');
+          const timestamp = new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' });
+          const logEntry = `\n======================================\nDate: ${timestamp} IST\nName: ${name}\nEmail: ${email}\nMessage: ${message}\nNote: Saved locally because GMAIL_APP_PASSWORD is not set in development.\n======================================\n`;
+          fs.appendFileSync(logFile, logEntry, 'utf8');
+          console.log('Saved message to messages.txt fallback (no GMAIL_APP_PASSWORD configured).');
+
+          return NextResponse.json({
+            success: true,
+            message: 'Message saved locally to messages.txt (GMAIL_APP_PASSWORD not set in development)!',
+          });
+        } catch (fsError) {
+          console.error('Failed to write message to fallback file:', fsError);
+        }
+      }
       console.error('SMTP Error: GMAIL_APP_PASSWORD env variable is not configured in this environment!');
       return NextResponse.json(
         {
@@ -190,12 +207,15 @@ export async function POST(request: Request) {
       );
     }
 
+    const senderEmail = process.env.CONTACT_SENDER_EMAIL || 'kingslyjoyalraj.j@gmail.com';
+    const receiverEmail = process.env.CONTACT_RECEIVER_EMAIL || 'kingslyjoyalraj.j@gmail.com';
+
     const transporter = nodemailer.createTransport({
       host: 'smtp.gmail.com',
       port: 465,
       secure: true,
       auth: {
-        user: 'kingslyjoyalraj.j@gmail.com',
+        user: senderEmail,
         pass: process.env.GMAIL_APP_PASSWORD,
       },
       // Force IPv4 lookup to prevent timeouts in serverless/hosting environments
@@ -209,8 +229,8 @@ export async function POST(request: Request) {
     } as any);
 
     await transporter.sendMail({
-      from: `"Portfolio Contact" <kingslyjoyalraj.j@gmail.com>`,
-      to: 'kingslyjoyalraj.j@gmail.com',
+      from: `"Portfolio Contact" <${senderEmail}>`,
+      to: receiverEmail,
       replyTo: escapedEmail,
       subject: `New message from ${escapedName}`,
       html: `<p><strong>Name:</strong> ${escapedName}</p><p><strong>Email:</strong> ${escapedEmail}</p><p><strong>Message:</strong></p><p>${escapedMessage}</p>`,
@@ -227,8 +247,8 @@ export async function POST(request: Request) {
       try {
         const logDir = process.cwd();
         const logFile = path.join(logDir, 'messages.txt');
-        const timestamp = new Date().toLocaleString('en-US', { timeZone: 'Asia/Karachi' });
-        const logEntry = `\n======================================\nDate: ${timestamp} PKT\nName: ${name}\nEmail: ${email}\nMessage: ${message}\n======================================\n`;
+        const timestamp = new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' });
+        const logEntry = `\n======================================\nDate: ${timestamp} IST\nName: ${name}\nEmail: ${email}\nMessage: ${message}\n======================================\n`;
         fs.appendFileSync(logFile, logEntry, 'utf8');
         console.log('Saved message to messages.txt fallback successfully.');
 

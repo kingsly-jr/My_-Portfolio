@@ -8,6 +8,7 @@ import { useRouter } from 'next/navigation';
 import AnimatedHeading from '@/components/ui/AnimateHeading';
 import { getAllProjects } from '@/lib/projects';
 import { Project } from '@/lib/projects';
+import { safeSessionStorage } from '@/utils/storage';
 
 /* ─────────────────────────────────────────────
    DESKTOP: Hover-preview cursor hook
@@ -248,8 +249,8 @@ function MobileSnapProjects({ projects, router }: MobileSnapProjectsProps) {
               const scrollY = (window as any).__lenis
                 ? Math.round((window as any).__lenis.scroll)
                 : Math.round(window.scrollY);
-              sessionStorage.setItem('projects-scroll', scrollY.toString());
-              sessionStorage.setItem('previous-project-url', window.location.pathname);
+              safeSessionStorage.setItem('projects-scroll', scrollY.toString());
+              safeSessionStorage.setItem('previous-project-url', window.location.pathname);
             }}
             ref={(el) => { cardRefs.current[index] = el; }}
             className="overflow-hidden rounded-3xl block no-underline text-inherit"
@@ -431,8 +432,8 @@ export default function ProjectsPage() {
     const scrollY = (window as any).__lenis
       ? Math.round((window as any).__lenis.scroll)
       : Math.round(window.scrollY);
-    sessionStorage.setItem('projects-scroll', scrollY.toString());
-    sessionStorage.setItem('previous-project-url', window.location.pathname);
+    safeSessionStorage.setItem('projects-scroll', scrollY.toString());
+    safeSessionStorage.setItem('previous-project-url', window.location.pathname);
   };
 
   /* ── Loading skeleton ── */

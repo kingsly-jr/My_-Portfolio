@@ -7,6 +7,7 @@ import { useLenis } from '@/components/providers/SmoothScrollProvider';
 import AnimatedLink from '@/components/ui/AnimateLink';
 import { useHandleLinkClick } from '@/lib/navigation';
 import Lenis from '@studio-freight/lenis';
+import { safeSessionStorage } from '@/utils/storage';
 
 interface AnimatedHamburgerProps {
   isOpen: boolean;
@@ -271,7 +272,7 @@ const Navbar: React.FC<NavbarProps> = ({ hamburgerOnly = false }) => {
   const isTransitioning = stage === 'entering' || stage === 'leaving';
 
   useEffect(() => {
-    const hasShownPreloader = sessionStorage.getItem('preloader-shown');
+    const hasShownPreloader = safeSessionStorage.getItem('preloader-shown');
     if (hasShownPreloader) {
       setPreloaderComplete(true);
     } else {

@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import Particles, { initParticlesEngine } from '@tsparticles/react';
 import { loadSlim } from '@tsparticles/slim';
-import type { Container, Engine } from '@tsparticles/engine';
+import type { Engine } from '@tsparticles/engine';
 
 export default function ParticlesBackground() {
   const [init, setInit] = useState(false);
@@ -20,7 +20,7 @@ export default function ParticlesBackground() {
     });
   }, []);
 
-  const particlesLoaded = async (container?: Container): Promise<void> => {
+  const particlesLoaded = async (): Promise<void> => {
     // console.log('Particles Loaded');
   };
 

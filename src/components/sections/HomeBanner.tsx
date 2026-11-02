@@ -293,7 +293,10 @@ const HomeBanner = () => {
                 variant="light"
               />
               <AnimatedButton
-                onClick={() => window.open('/Kingsly%20Joyal%20Raj.pdf?v=' + Date.now(), '_blank')}
+                as="a"
+                href="/Kingsly%20Joyal%20Raj.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
                 topText="RESUME"
                 bottomText="DOWNLOAD →"
                 variant="light"
