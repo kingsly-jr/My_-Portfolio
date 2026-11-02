@@ -367,7 +367,7 @@ export default function ProjectsPage() {
     useHoverPreview(containerRef, handleScrollLeave);
 
   useEffect(() => {
-    getAllProjects().slice(0, 4).forEach((project) => {
+    getAllProjects().forEach((project) => {
       const img = new window.Image();
       img.src = project.hoverImage || project.images[0];
     });

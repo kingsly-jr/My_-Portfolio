@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useRef } from 'react';
-import Image from 'next/image';
+import HoloCard from '@/components/ui/HoloCard';
 import { gsap, useGSAP } from '@/lib/gsap';
 import AnimateDescription from '@/components/ui/AnimateDescription';
 import AnimatedHeading from '@/components/ui/AnimateHeading';
@@ -23,24 +23,46 @@ Outside of coding, I enjoy exploring new technologies, building personal project
         '.about-image-wrapper',
         { x: -60, opacity: 0 },
         {
-          x: 0, opacity: 1, duration: 1, ease: 'power3.out',
-          scrollTrigger: { trigger: '.about-image-wrapper', start: 'top 85%', toggleActions: 'play none none reverse' },
+          x: 0,
+          opacity: 1,
+          duration: 1,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: '.about-image-wrapper',
+            start: 'top 85%',
+            toggleActions: 'play none none reverse',
+          },
         },
       );
       gsap.fromTo(
         '.about-bio-para',
         { y: 40, opacity: 0 },
         {
-          y: 0, opacity: 1, duration: 0.8, stagger: 0.15, ease: 'power3.out',
-          scrollTrigger: { trigger: '.about-bio-para', start: 'top 85%', toggleActions: 'play none none reverse' },
+          y: 0,
+          opacity: 1,
+          duration: 0.8,
+          stagger: 0.15,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: '.about-bio-para',
+            start: 'top 85%',
+            toggleActions: 'play none none reverse',
+          },
         },
       );
       gsap.fromTo(
         '.about-label',
         { opacity: 0, letterSpacing: '0.5em' },
         {
-          opacity: 1, letterSpacing: '0.3em', duration: 1, ease: 'power3.out',
-          scrollTrigger: { trigger: '.about-label', start: 'top 88%', toggleActions: 'play none none reverse' },
+          opacity: 1,
+          letterSpacing: '0.3em',
+          duration: 1,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: '.about-label',
+            start: 'top 88%',
+            toggleActions: 'play none none reverse',
+          },
         },
       );
     },
@@ -68,15 +90,15 @@ Outside of coding, I enjoy exploring new technologies, building personal project
 
           <div className="grid grid-cols-12 gap-6 md:gap-8 pb-20">
             <div className="col-span-12 md:col-span-5 lg:col-span-5">
-              <div className="about-image-wrapper w-full max-w-[350px] md:max-w-[380px] h-[360px] md:h-[450px] bg-elevated-dark rounded-2xl overflow-hidden border border-border-subtler">
-                <Image
-                  src="/New Pic.png"
+              <div className="about-image-wrapper w-full max-w-[350px] md:max-w-[380px]">
+                <HoloCard
+                  imageSrc="/New Pic.png"
                   alt="Kingsly JR - Profile photo"
                   width={380}
                   height={450}
-                  className="w-full h-full object-cover"
-                  priority
-                  quality={90}
+                  className="w-full h-[360px] md:h-[450px]"
+                  maxTilt={12}
+                  shadow={true}
                 />
               </div>
             </div>
